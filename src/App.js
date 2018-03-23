@@ -5,10 +5,6 @@ import web3 from './web3'
 import lottery from './lottery';
 
 class App extends Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {manager: ''};
-  // }
   state = {
     manager: '',
     players: [],
@@ -30,7 +26,7 @@ class App extends Component {
 
     const accounts = await web3.eth.getAccounts();
 
-    this.setState({message: 'Waiting on transaction success...'});
+    this.setState({message: 'Waiting on transaction success from Rinkeby, maybe 30 seconds...'});
 
     await lottery.methods.enter().send({
       from: accounts[0],
@@ -43,7 +39,7 @@ class App extends Component {
   onClick = async () => {
     const accounts = await web3.eth.getAccounts();
 
-    this.setState({message: 'Waiting on transaction success...'});
+    this.setState({message: 'Waiting on transaction success from Rinkeby, maybe 30 seconds...'});
 
     await lottery.methods.pickWinner().send({
       from: accounts[0]
@@ -57,7 +53,7 @@ class App extends Component {
       <div>
         <h2>Lottery Contract</h2>
         <p>
-          This contract is managed by {this.state.manager}
+          This contract is managed by Yevgeniy Vasilyev at {this.state.manager} on the Rinkeby Test Network
         </p>
         <p>
         There are currently {this.state.players.length} people entered competing to win {web3.utils.fromWei(this.state.balance, 'ether')} Ether!
